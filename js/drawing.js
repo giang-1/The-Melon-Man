@@ -23,6 +23,7 @@ game.drawStructure = function (name, x, y) {
 
 game.drawPlayer = function () {
 	actualPlayerTile = game.player.animations[game.player.direction][game.player.animationFrameNumber % 4]
+	console.log(actualPlayerTile)
 	game.context.drawImage(
 		game.textures,
 		actualPlayerTile.tileColumn * game.options.tileWidth,
@@ -41,7 +42,7 @@ game.redraw = function () {
 
 	// Draw the background
 	if (game.backgrounds['sky'].loaded) {
-		var pattern = game.context.createPattern(game.backgrounds['sky'].image, 'repeat') // Create a pattern with this image, and set it to "repeat".
+		var pattern = game.context.createPattern(game.backgrounds['sky'].image, "repeat") // Create a pattern with this image, and set it to "repeat".
 		game.context.fillStyle = pattern
 	} else {
 		game.context.fillStyle = "#78c5ff"
@@ -52,6 +53,7 @@ game.redraw = function () {
 	if (game.backgrounds['trees'].loaded) {
 		game.context.drawImage(game.backgrounds['trees'].image, 0, game.canvas.height / 2 - game.player.y / 10, 332, 180)
 		game.context.drawImage(game.backgrounds['trees'].image, 332, game.canvas.height / 2 - game.player.y / 10, 332, 180)
+		game.context.drawImage(game.backgrounds['trees'].image, 70, game.canvas.height / 2 - game.player.y / 10, 332, 250)
 	}
 
 	// List nearest structures
@@ -75,8 +77,10 @@ game.redraw = function () {
 
 	// Draw the player
 	game.drawPlayer()
-
-	game.counter.innerHTML = "A game by Karol Swierczek | Controls: A, D / arrows and SPACE | Points: " + Math.round(-game.player.highestY / (3 * game.options.tileHeight)), game.canvas.width - 50, game.canvas.height - 12
+	game.counter.innerHTML = Math.round(-game.player.highestY / (3 * game.options.tileHeight)), game.canvas.width - 50, game.canvas.height - 12
+	game.context.font = "15px serif";
+	game.context.fillStyle = 'black'
+	game.context.fillText('point:' + Math.round(-game.player.highestY / (3 * game.options.tileHeight)), 50, 50);
 }
 
 game.requestRedraw = function () {
@@ -85,7 +89,7 @@ game.requestRedraw = function () {
 		requestAnimationFrame(game.redraw)
 	}
 
-	if(game.isOver) {
+	if (game.isOver) {
 		clearInterval(this.player.fallInterval)
 		game.context.font = "30px superscript"
 		game.context.textAlign = "center"
