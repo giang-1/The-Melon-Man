@@ -33,7 +33,7 @@ game.generateMap = function () {
 	// Generate the rest of the platforms
 	for (var i = 1; i < 20; i++) {
 		this.map.structures.push({
-			name: "snowPlatform",
+			name: "grassPlatform",
 			x: Math.floor(Math.random() * 8),
 			y: -i * 3
 		})
@@ -42,7 +42,7 @@ game.generateMap = function () {
 	for (var i = 20; i < 40; i++) {
 		randomX = Math.floor(Math.random() * 8)
 		this.map.structures.push({
-			name: "grassPlatform ",
+			name: " snowPlatform",
 			x: randomX,
 			y: -i * 3
 		})
