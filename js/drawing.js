@@ -23,7 +23,6 @@ game.drawStructure = function (name, x, y) {
 
 game.drawPlayer = function () {
 	actualPlayerTile = game.player.animations[game.player.direction][game.player.animationFrameNumber % 4]
-	console.log(actualPlayerTile)
 	game.context.drawImage(
 		game.textures,
 		actualPlayerTile.tileColumn * game.options.tileWidth,
@@ -77,10 +76,14 @@ game.redraw = function () {
 
 	// Draw the player
 	game.drawPlayer()
-	game.counter.innerHTML = Math.round(-game.player.highestY / (3 * game.options.tileHeight)), game.canvas.width - 50, game.canvas.height - 12
-	game.context.font = "15px serif";
-	game.context.fillStyle = 'black'
-	game.context.fillText('point:' + Math.round(-game.player.highestY / (3 * game.options.tileHeight)), 50, 50);
+
+	game.drawPoint = function () {
+		game.counter.innerHTML = Math.round(-game.player.highestY / (3 * game.options.tileHeight)), game.canvas.width - 50, game.canvas.height - 12
+		game.context.font = "15px serif";
+		game.context.fillStyle = 'black'
+		game.context.fillText('point:' + Math.round(-game.player.highestY), 50, 50);
+	}
+	game.drawPoint()
 }
 
 game.requestRedraw = function () {

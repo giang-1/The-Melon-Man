@@ -7,7 +7,7 @@ game.moveLeft = function () {
 			setTimeout(function () {
 				// Player can't move faster if there's friction from the ground
 				if (game.player.isInAir) {
-					game.player.x -= 0.2
+					game.player.x -= 0.3
 				} else {
 					game.player.x -= 0.1
 				}
@@ -29,7 +29,7 @@ game.moveRight = function () {
 		for (var i = 1; i < 120; i++) {
 			setTimeout(function () {
 				if (game.player.isInAir) {
-					game.player.x += 0.2
+					game.player.x += 0.3
 				} else {
 					game.player.x += 0.1
 				}
@@ -49,6 +49,7 @@ game.clearMoveIntervals = function () {
 }
 
 game.keydown = function (event) {
+	let a = 0
 	if (!game.pressedKeys[event.keyCode]) { // Prevent key repeating
 		switch (event.keyCode) {
 			case 65:
